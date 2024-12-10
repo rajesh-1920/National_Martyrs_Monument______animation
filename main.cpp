@@ -6,10 +6,17 @@ using namespace std;
 //--------declaration---------------
 void baseline();
 void middle(int);
-void side();
+void side(int);
 //----------------------------------
-int line_start,time_delay;
-void control();
+int line_start,time_delay,mid_val,base_point,lef,righ;
+void control()
+{
+    line_start=380;
+    mid_val=315;
+    time_delay=1;
+    lef=265;
+    righ=365;
+}
 int main()
 {
     int gd,gm;
@@ -18,8 +25,8 @@ int main()
 
     control();
     baseline();
-    middle(40);
-    side();
+    middle(30);
+    side(90);
 
     getchar();
     return 0;
@@ -27,73 +34,125 @@ int main()
 //--------------------------------middle------------------------
 void middle(int line_end)
 {
-    int i=line_start,j1=365,j2=265;
+    int i=line_start,j1=righ,j2=lef;
     while(i>line_end)
     {
         delay(time_delay);
         line(j1,i-1,j1,i);
-        line(j2,i-1,j2,i);
+        line(j2,i+1,j2,i);
         i--;
         if(i%7==0)
             j1--,j2++;
     }
-    for(i=line_end;i>line_end-15;i--)
+    for(i=line_end; i>line_end-8; i--)
     {
-        line(315,i-1,315,i);
+        line(mid_val,i-1,mid_val,i);
         delay(time_delay);
     }
-    for(i=line_end;i<line_end+180;i++)
+    for(i=line_end; i<line_end+180; i++)
     {
-        line(315,i-1,315,i);
+        line(mid_val,i-1,mid_val,i);
         delay(time_delay);
     }
     while(i<line_start-100)
     {
         delay(time_delay);
         line(j1,i-1,j1,i);
-        line(j2,i-1,j2,i);
+        line(j2,i+1,j2,i);
         i++;
         if(i%2==0)
             j1--,j2++;
     }
-    j1--,j2++;
-    i+=14;
-    while(i<line_start-13)
+    int t=j1-2;
+    while(true)
     {
         delay(time_delay);
         line(j1,i-1,j1,i);
         line(j2,i-1,j2,i);
+        j1++,j2--;
+        if(j1>j2)
+            break;
+    }
+    i+=7;
+    while(true)
+    {
+        delay(time_delay);
+        line(j1,i-1,j1,i);
+        line(j2,i-1,j2,i);
+        j1--,j2++;
+        if(j1==t)
+            break;
+    }
+    while(true)
+    {
+        delay(time_delay);
+        line(j1,i-1,j1,i);
+        line(j2,i+1,j2,i);
         i++;
         if(i%2==0)
             j1++,j2--;
+        if(j1>j2)
+            break;
     }
-    cout<<i;
-}
-void control()
-{
-    line_start=390;
-    time_delay=0;
+    base_point=i;
+    while(true)
+    {
+        delay(time_delay);
+        line(j1,i-1,j1,i);
+        line(j2,i+1,j2,i);
+        j1++,j2--;
+        if(j1%3==0)
+            i++;
+        if(i>line_start||j1>righ)
+            break;
+    }
 }
 //--------------------------------middle end------------------------
-void side()
+void side(int line_end)
 {
-    /*line(325,100,395,330);
-    line(305,120,235,330);
+    int j1=righ,j2=lef,diff=25,dit=48,tt=10;
+    time_delay*=500;
 
-    /*line(335,160,410,330);
-    line(295,160,220,330);
+    delay(time_delay);
+    line(j1+diff,line_start,mid_val+tt,line_end);
+    line(j2-diff,line_start,mid_val-tt,line_end);
+    line(j1+diff,line_start,mid_val+dit,base_point);
+    line(j2-diff,line_start,mid_val-dit,base_point);
 
-    line(345,190,430,330);
-    line(285,190,200,330);
+    diff+=25,dit+=24,line_end+=50,tt=22;
+    delay(time_delay);
+    line(j1+diff,line_start,mid_val+tt,line_end);
+    line(j2-diff,line_start,mid_val-tt,line_end);
+    line(j1+diff,line_start,mid_val+dit,base_point);
+    line(j2-diff,line_start,mid_val-dit,base_point);
 
-    line(355,210,450,330);
-    line(275,210,180,330);
+    diff+=26,dit+=24,line_end+=40,tt=35;
+    delay(time_delay);
+    line(j1+diff,line_start,mid_val+tt,line_end);
+    line(j2-diff,line_start,mid_val-tt,line_end);
+    line(j1+diff,line_start,mid_val+dit,base_point);
+    line(j2-diff,line_start,mid_val-dit,base_point);
 
-    line(368,230,480,330);
-    line(262,230,150,330);
+    diff+=28,dit+=24,line_end+=50,tt=58;
+    delay(time_delay);
+    line(j1+diff,line_start,mid_val+tt,line_end);
+    line(j2-diff,line_start,mid_val-tt,line_end);
+    line(j1+diff,line_start,mid_val+dit,base_point);
+    line(j2-diff,line_start,mid_val-dit,base_point);
 
-    line(394,260,460,330);
-    line(236,260,130,330);*/
+    diff+=30,dit+=24,line_end+=40,tt=83;
+    delay(time_delay);
+    line(j1+diff,line_start,mid_val+tt,line_end);
+    line(j2-diff,line_start,mid_val-tt,line_end);
+    line(j1+diff,line_start,mid_val+dit,base_point);
+    line(j2-diff,line_start,mid_val-dit,base_point);
+
+    diff+=30,dit+=24,line_end+=30,tt=110;
+    delay(time_delay);
+    line(j1+diff,line_start,mid_val+tt,line_end);
+    line(j2-diff,line_start,mid_val-tt,line_end);
+    line(j1+diff,line_start,mid_val+dit,base_point);
+    line(j2-diff,line_start,mid_val-dit,base_point);
 }
 void baseline()
 {
