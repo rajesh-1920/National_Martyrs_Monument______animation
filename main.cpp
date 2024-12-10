@@ -2,7 +2,6 @@
 #include<graphics.h>
 using namespace std;
 #define dbg(x) cout<<#x<<" = "<<x<<'\n'
-
 //--------declaration---------------
 void baseline();
 void middle(int);
