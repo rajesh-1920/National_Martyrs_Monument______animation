@@ -1,3 +1,12 @@
+/*
+    Project : National Martyr's Monument
+    Author : Rajesh Biswas
+    CF : rajesh19
+    Github : rajesh-1920
+    LinkedIn : https://www.linkedin.com/in/rajesh-biswas-8b9780312/
+*/
+
+
 #include <bits/stdc++.h>
 #include<graphics.h>
 using namespace std;
@@ -12,11 +21,11 @@ int line_start,time_delay,mid_val,base_point,lef,righ;
 void control()
 {
     line_start=365;
-    mid_val=300;
+    mid_val=315;
     lef=mid_val-50;
     righ=mid_val+50;
     setcolor(YELLOW);
-    time_delay=1;
+    time_delay=0;
 }
 int main()
 {
@@ -25,10 +34,10 @@ int main()
     initgraph(&gd,&gm,"c:\\TURBOC3\\BGI");
 
     control();
-    //middle(line_start-350);
-    //side(line_start-290);
+    middle(line_start-350);
+    side(line_start-290);
     baseline();
-    delay(time_delay*100);
+    delay(time_delay*50);
     flag();
 
     getchar();
@@ -178,8 +187,16 @@ void baseline()
         line(mid_val+len+t-dis,line_start+25-i-1, mid_val+len+t-dis,line_start+25-i);
         line(mid_val-len-t,line_start+30-i-1, mid_val-len-t,line_start+30-i);
         line(mid_val+len+t,line_start+30-i-1, mid_val+len+t,line_start+30-i);
-        if(i%4==0)
+        if(i%2==0)
             t--;
+    }
+    for(int i=190; i<335; i++)
+    {
+        delay(time_delay);
+        line(mid_val-i,line_start+30-l,mid_val-i+1,line_start+30-l);
+        line(mid_val+i,line_start+30-l,mid_val+i+1,line_start+30-l);
+        line(mid_val-i+6,line_start+25-l,mid_val-i+1+6,line_start+25-l);
+        line(mid_val+i-6,line_start+25-l,mid_val+i+1-6,line_start+25-l);
     }
     len=60;
     for(int i=0; i<len; i++)
@@ -193,7 +210,7 @@ void baseline()
         delay(time_delay);
         line(mid_val-len-t,line_start+i-1, mid_val-len-t,line_start+i);
         line(mid_val+len+t,line_start+i-1, mid_val+len+t,line_start+i);
-        if(i%5==0)
+        if(i%4==0)
             t++;
     }
     setcolor(LIGHTGRAY);
@@ -214,6 +231,18 @@ void baseline()
             t++;
             fl^=1;
         }
+    }
+    setcolor(YELLOW);
+    t=0,len=180,fl=5;
+    for(int i=31; i<125; i++)
+    {
+        delay(time_delay);
+        line(mid_val-len-t+3,line_start+i-1, mid_val-len-t+3,line_start+i);
+        line(mid_val+len+t-3,line_start+i-1, mid_val+len+t-3,line_start+i);
+        line(mid_val-len-t,line_start+i-1-fl, mid_val-len-t,line_start+i-fl);
+        line(mid_val+len+t,line_start+i-1-fl, mid_val+len+t,line_start+i-fl);
+        if(i%2==0)
+            t++;
     }
 
 }
@@ -236,24 +265,24 @@ void flag()
         delay(time_delay*10);
         circle(mid_val+dis+1-t,line_start-len,i);
     }
-    t=5,dis=45;
+    t=8,dis=45;
     int ht=60,wt=100;
     setcolor(LIGHTGREEN);
     for(int i=mid_val+dis-1; i<mid_val+dis+wt; i++)
     {
         delay(time_delay);
-        line(i-1,line_start-len+ht+t,i,line_start-len+t);
+        line(i+2,line_start-len+ht+t,i,line_start-len+t);
     }
     setcolor(RED);
     for(int i=0; i<=25; i++)
     {
         delay(time_delay*20);
-        circle(mid_val+dis+(wt/2),line_start-len+(ht/2)+t,i);
+        circle(mid_val+dis+(wt/2)-5,line_start-len+(ht/2)+t,i);
     }
     setcolor(LIGHTRED);
-    circle(mid_val+dis+(wt/2),line_start-len+(ht/2)+t,25);
+    circle(mid_val+dis+(wt/2)-5,line_start-len+(ht/2)+t,25);
     setfillstyle(SOLID_FILL,RED);
     floodfill(mid_val+dis+(wt/2)+1,line_start-len+(ht/2)+t,LIGHTRED);
     setcolor(RED);
-    circle(mid_val+dis+(wt/2),line_start-len+(ht/2)+t,25);
+    circle(mid_val+dis+(wt/2)-5,line_start-len+(ht/2)+t,25);
 }
