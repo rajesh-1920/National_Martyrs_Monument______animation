@@ -25,9 +25,10 @@ int main()
     initgraph(&gd,&gm,"c:\\TURBOC3\\BGI");
 
     control();
-    middle(line_start-350);
-    side(line_start-290);
+    //middle(line_start-350);
+    //side(line_start-290);
     baseline();
+    delay(time_delay*100);
     flag();
 
     getchar();
@@ -180,6 +181,41 @@ void baseline()
         if(i%4==0)
             t--;
     }
+    len=60;
+    for(int i=0; i<len; i++)
+    {
+        delay(time_delay);
+        line(mid_val-i,line_start+35,mid_val+i+1,line_start+35);
+    }
+    t=0;
+    for(int i=36; i<115; i++)
+    {
+        delay(time_delay);
+        line(mid_val-len-t,line_start+i-1, mid_val-len-t,line_start+i);
+        line(mid_val+len+t,line_start+i-1, mid_val+len+t,line_start+i);
+        if(i%5==0)
+            t++;
+    }
+    setcolor(LIGHTGRAY);
+    t=0,len=40;
+    int fl=0;
+    for(int i=46; i<115; i++)
+    {
+        delay(time_delay*50);
+        setcolor(LIGHTGRAY);
+        line(mid_val-len-t,line_start+i,mid_val+len+t,line_start+i);
+        setcolor(BLACKONWHITE);
+        if(i%4==0)
+        {
+            if(fl)
+                line(mid_val-len-t+10,line_start+i,mid_val+len+t-20,line_start+i);
+            else
+                line(mid_val-len-t+20,line_start+i,mid_val+len+t-10,line_start+i);
+            t++;
+            fl^=1;
+        }
+    }
+
 }
 //--------------------------------------------------------------------------------
 void flag()
