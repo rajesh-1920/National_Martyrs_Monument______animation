@@ -6,7 +6,6 @@
     LinkedIn : https://www.linkedin.com/in/rajesh-biswas-8b9780312/
 */
 
-
 #include <bits/stdc++.h>
 #include<graphics.h>
 using namespace std;
@@ -25,13 +24,16 @@ void control()
     lef=mid_val-50;
     righ=mid_val+50;
     setcolor(YELLOW);
-    time_delay=0;
+    time_delay=1;
 }
 int main()
 {
     int gd,gm;
     detectgraph(&gd,&gm);
     initgraph(&gd,&gm,"c:\\TURBOC3\\BGI");
+    int t;
+    cin>>t;
+    delay(2000);
 
     control();
     middle(line_start-350);
@@ -40,7 +42,7 @@ int main()
     delay(time_delay*50);
     flag();
 
-    getchar();
+    cin>>t;
     return 0;
 }
 //--------------------------------middle------------------------
