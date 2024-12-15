@@ -9,4 +9,6 @@
 
 </div>
 
+# This animation is created using the C++ programming language. The `graphics.h` library is utilized to display the animation.
+
 # Thank you all.
